@@ -7,3 +7,7 @@ def index(request):
 def blog(request):
 	postlist = Post.objects.all()
 	return render(request, 'main/blog.html', {'postlist':postlist})
+
+def posting(request, pk):
+	post = Post.objects.get(pk=pk)
+	return render(request, 'main/posting.html', {'post':post})
