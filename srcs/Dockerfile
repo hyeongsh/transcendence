@@ -5,11 +5,13 @@ FROM python:3.11-slim
 WORKDIR /project
 
 # 의존성 복사 및 설치
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY requirements.txt /home/requirements.txt
+COPY entrypoint.sh /home/entrypoint.sh
+
+RUN chmod +x /home/entrypoint.sh
 
 # 포트 오픈
 EXPOSE 8000
 
 # 기본 명령어 (프로젝트 없으면 생성)
-CMD ["sh", "-c", "test -f manage.py || django-admin startproject test_app . && python manage.py runserver 0.0.0.0:8000"]
+CMD ["bash", "/home/entrypoint.sh"]
