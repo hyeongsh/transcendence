@@ -13,12 +13,15 @@ logs:
 	docker-compose -f $(COMPOSE_FILE) logs
 
 clean:
-	docker-compose -f $(COMPOSE_FILE) down
+	docker-compose -f $(COMPOSE_FILE) down -v
 
 fclean: 
 	docker-compose -f $(COMPOSE_FILE) down -v --rmi all
 
 exec:
+	docker exec django $(CMD)
+
+in:
 	docker exec -it django /bin/bash
 
-.PHONY: all up re clean fclean
+.PHONY: all up re clean fclean exec in

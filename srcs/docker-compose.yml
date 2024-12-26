@@ -8,5 +8,5 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./project:/application  # 코드 동기화
+      - ./project:/project  # 코드 동기화
   
