@@ -1,5 +1,5 @@
 COMPOSE_FILE = srcs/docker-compose.yml
-VOLUME_DIR=/Users/hyeongsh/42cursus/transcendence/srcs/app
+VOLUME_DIR=/Users/hyeongsh/42cursus/transcendence/srcs/project
 
 all: up
 
@@ -17,5 +17,8 @@ clean:
 
 fclean: 
 	docker-compose -f $(COMPOSE_FILE) down -v --rmi all
+
+exec:
+	docker exec -it django /bin/bash
 
 .PHONY: all up re clean fclean
