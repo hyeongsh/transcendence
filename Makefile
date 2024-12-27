@@ -19,9 +19,9 @@ fclean:
 	docker-compose -f $(COMPOSE_FILE) down -v --rmi all
 
 exec:
-	docker exec django $(CMD)
+	docker exec django $(cmd)
 
-in:
-	docker exec -it django /bin/bash
+it:
+	docker exec -it django $(cmd)
 
-.PHONY: all up re clean fclean exec in
+.PHONY: all up re clean fclean exec it
