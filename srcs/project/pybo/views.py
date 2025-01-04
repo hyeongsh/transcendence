@@ -2,11 +2,15 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Question
 from .forms import QuestionForm
+from django.core.paginator import Paginator
 
 def index(request):
+	page = request.GET.get('page', '1')
 	question_list = Question.objects.order_by('-create_date') # -는 역방향 정렬
-	context = {'question_list': question_list}
-	# render 함수는 파이썬 데이터를 템플릿에 적용하여 HTML로 반환하는 함수
+	paginator = Paginator(question_list, 10)
+	page_obj = paginator.get_page(page)
+	context = {'question_list': page_obj}
+	# render 함수는 파이썬 데이터를 템플z릿에 적용하여 HTML로 반환하는 함수
 	# question_list 데이터를 html 파일에 적용하여 생성한 후 리턴해준다. 
 	return render(request, 'pybo/question_list.html', context)
 
