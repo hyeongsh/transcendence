@@ -24,4 +24,12 @@ exec:
 it:
 	docker exec -it django $(cmd)
 
-.PHONY: all up re clean fclean exec it
+start:
+	@docker exec -d django bash -c "python3 manage.py runserver 0.0.0.0:8000 > /logs/django.log 2>&1"
+
+stop:
+	@docker exec django pkill -f "python3 manage.py runserver"
+
+restart: stop start
+
+.PHONY: all up re clean fclean exec it start stop
