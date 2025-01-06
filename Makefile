@@ -18,11 +18,11 @@ clean:
 fclean: 
 	docker-compose -f $(COMPOSE_FILE) down -v --rmi all
 
-exec:
-	docker exec django $(cmd)
+django:
+	docker exec -it django python3 manage.py $(cmd)
 
-it:
-	docker exec -it django $(cmd)
+bash:
+	docker exec -it django /bin/bash
 
 start:
 	@docker exec -d django bash -c "python3 manage.py runserver 0.0.0.0:8000 > /logs/django.log 2>&1"
@@ -32,4 +32,4 @@ stop:
 
 restart: stop start
 
-.PHONY: all up re clean fclean exec it start stop
+.PHONY: all up re clean fclean django bash start stop
