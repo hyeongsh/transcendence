@@ -6,7 +6,7 @@ apt-get update && apt-get upgrade -y
 apt-get install -y procps
 
 pip install --no-cache-dir -r /home/requirements.txt
-test -f manage.py || django-admin startproject mysite .
+test -f manage.py || django-admin startproject django_jwt .
 mkdir -p /logs
 touch /logs/django.log
 chmod 755 /logs/django.log
