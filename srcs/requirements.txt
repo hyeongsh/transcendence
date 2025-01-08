@@ -1,3 +1,4 @@
 django>=5.1,<5.2
 djangorestframework
-
+djangorestframework-simplejwt
+social-auth-app-django
